@@ -1,9 +1,14 @@
-import express from "express"
+import express from "express";
 const app = express();
 import http from "http";
 const server = http.createServer(app);
 import { Server } from "socket.io";
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin:
+      process.env.NODE_ENV === "production" ? false : ["http://localhost:3210"],
+  },
+});
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -12,9 +17,8 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("chat message", (msg) => {
-    
     // to send message to everyone including sender
-    io.emit('chat message', msg);
+    io.emit("chat message", msg);
     // console.log("message: " + msg);
   });
   // // to disconnect or to catch when auser has disconnected from server
