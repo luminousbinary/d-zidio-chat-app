@@ -1,11 +1,3 @@
-This is teh front end of the chat app 
-
-to run:
-1. ake sure you are in the frontend directory in your terminal
-2. npm install (id you are running for the first time)
-3. npm run dev
-4. then go to the link displayed in the terminal
-
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
